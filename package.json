@@ -1,0 +1,43 @@
+{
+  "name": "@panda/task",
+  "version": "0.1.0",
+  "description": "Panda Task library",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "npm run build -- --watch src",
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "build:cjs": "tsup src/index.ts --format cjs --dts",
+    "build:esm": "tsup src/index.ts --format esm --dts",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src",
+    "lint:prettier": "npm run lint:prettier:script -- --check",
+    "lint:prettier:fix": "npm run lint:prettier:script -- --write",
+    "lint:prettier:ci": "npm run lint:prettier:script -- --check",
+    "lint:prettier:script": "prettier \"src/**/*.{js,jsx,cjs,mjs,ts,tsx}\" --cache",
+    "test": "npm run test:vitest && npm run lint",
+    "test:vitest": "vitest run",
+    "test:watch": "vitest --watch"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "listr2": "^8.2.1",
+    "prettier": "^3.3.1",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.12.0",
+    "vitest": "^1.6.0"
+  }
+}
