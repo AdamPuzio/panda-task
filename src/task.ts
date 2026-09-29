@@ -1,5 +1,5 @@
 import { Listr, PRESET_TIMER } from 'listr2'
-import { Logger } from './logger'
+import { Trace } from '@panda/trace'
 import {
   TaskInterface,
   TaskOptions,
@@ -51,7 +51,10 @@ export class Task implements TaskInterface {
   $derivedConfig: any
   $instanceConfig: any
 
-  Logger = Logger
+  // Per panda-opencode/DECISIONS.md: previously a hand-rolled internal
+  // Logger class duplicating @panda/trace's entire shape. Deprecated in
+  // favor of depending on @panda/trace directly.
+  Trace = Trace
 
   constructor(cfg: TaskProps = {}) {
     const lineage = this.getLineage().reverse()

@@ -1,67 +1,5 @@
-import { ListrContext, Listr, ListrBaseClassOptions, ListrTask, ListrTaskWrapper, ListrRendererFactory, ListrTaskFn } from 'listr2';
-import { Task as Task$1 } from '#task';
-
-interface LogOptions {
-    label?: string;
-    level?: string;
-    tags?: string[];
-    method?: 'log' | 'error' | 'warn' | 'info' | 'debug' | 'table';
-}
-declare class Logger {
-    static debugMode: string;
-    static debugTags: boolean | string[];
-    static debugLevel: string;
-    static debugLevelInt: number;
-    static levels: string[];
-    static colorize: (message: string) => {
-        bold: string;
-        red: string;
-        green: string;
-        yellow: string;
-        blue: string;
-        magenta: string;
-        cyan: string;
-        white: string;
-        gray: string;
-        grey: string;
-        brightRed: string;
-        brightGreen: string;
-        brightYellow: string;
-        brightBlue: string;
-        brightMagenta: string;
-        brightCyan: string;
-        brightWhite: string;
-        bgRed: string;
-        bgGreen: string;
-        bgYellow: string;
-        bgBlue: string;
-        bgMagenta: string;
-        bgCyan: string;
-        bgWhite: string;
-        bgGray: string;
-        bgGrey: string;
-        bgBrightRed: string;
-        bgBrightGreen: string;
-        bgBrightYellow: string;
-        bgBrightBlue: string;
-        bgBrightMagenta: string;
-        bgBrightCyan: string;
-        bgBrightWhite: string;
-        bgBlack: string;
-        bgBrightBlack: string;
-        bgBrightGray: string;
-        bgBrightGrey: string;
-    };
-    static log: (message: any, { label, level, tags, method }?: LogOptions) => void;
-    static testTags: (tags: string[]) => boolean;
-    static error: (message: any, { label, level, tags }?: LogOptions) => void;
-    static warn: (message: any, { label, level, tags }?: LogOptions) => void;
-    static info: (message: any, { label, level, tags }?: LogOptions) => void;
-    static debug: (message: any, { label, level, tags }?: LogOptions) => void;
-    static success: (message: string) => void;
-    static fail: (message: string) => void;
-    static table: (data: any, { label, level, tags }?: LogOptions) => void;
-}
+import { Trace } from '@panda/trace';
+import { ListrTask, ListrBaseClassOptions, ListrContext, ListrRendererFactory, ListrTaskFn, ListrTaskWrapper, Listr } from 'listr2';
 
 type TaskContext = ListrContext;
 interface TaskSuper extends Listr {
@@ -164,7 +102,7 @@ declare class Task implements TaskInterface {
     $config: any;
     $derivedConfig: any;
     $instanceConfig: any;
-    Logger: typeof Logger;
+    Trace: typeof Trace;
     constructor(cfg?: TaskProps);
     configure(cfg: TaskProps): void;
     run(ctx: any): Promise<any>;
@@ -197,7 +135,7 @@ interface FileCreateTaskConfig {
     ifExists: 'skip' | 'overwrite' | 'throw';
     encoding?: string;
 }
-declare class FileCreateTask extends Task$1 {
+declare class FileCreateTask extends Task {
     static type: string;
     static description: string;
     run({ file, contents, ifExists, encoding }: FileCreateTaskConfig): Promise<void>;
@@ -243,13 +181,13 @@ interface NpmInstallTaskConfig {
     packageManager?: 'npm' | 'yarn';
     saveDev?: boolean;
 }
-declare class NpmInstallTask extends Task$1 {
+declare class NpmInstallTask extends Task {
     static type: string;
     static description: string;
     run({ packages, params, path, packageManager, saveDev }: NpmInstallTaskConfig): Promise<void>;
 }
 
-declare class PathContextTask extends Task$1 {
+declare class PathContextTask extends Task {
     static type: string;
     static description: string;
     run({ path, context }: {
@@ -267,7 +205,7 @@ declare class PathContextTask extends Task$1 {
 interface PathEnsureTaskConfig {
     path: string;
 }
-declare class PathEnsureTask extends Task$1 {
+declare class PathEnsureTask extends Task {
     static type: string;
     static description: string;
     run({ path }: PathEnsureTaskConfig): Promise<void>;
@@ -278,10 +216,10 @@ interface PathExistsTaskConfig {
     ifExists: 'success' | 'error';
     ifNotExists: 'success' | 'error';
 }
-declare class PathExistsTask extends Task$1 {
+declare class PathExistsTask extends Task {
     static type: string;
     static description: string;
     run({ path, ifExists, ifNotExists }: PathExistsTaskConfig): Promise<void>;
 }
 
-export { FileCreateTask, JsonCreateTask, JsonUpdateTask, Logger, NpmInstallTask, PathContextTask, PathEnsureTask, PathExistsTask, Task, type TaskBaseConfig, type TaskConfig, type TaskConfigProps, type TaskContext, type TaskInterface, type TaskOptions, type TaskProps, type TaskRollback, type TaskSuper, type TaskSuperOptions, type TaskSuperTask, type TaskSuperWrapper };
+export { FileCreateTask, JsonCreateTask, JsonUpdateTask, NpmInstallTask, PathContextTask, PathEnsureTask, PathExistsTask, Task, type TaskBaseConfig, type TaskConfig, type TaskConfigProps, type TaskContext, type TaskInterface, type TaskOptions, type TaskProps, type TaskRollback, type TaskSuper, type TaskSuperOptions, type TaskSuperTask, type TaskSuperWrapper };
