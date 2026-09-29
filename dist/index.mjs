@@ -20,131 +20,14 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/esm-shim.ts
-import { createRequire } from "node:module";
-import path from "node:path";
-import url from "node:url";
+import { createRequire } from "module";
+import path from "path";
+import url from "url";
 var init_esm_shim = __esm({
   "src/esm-shim.ts"() {
     globalThis.require = createRequire(import.meta.url);
     globalThis.__filename = url.fileURLToPath(import.meta.url);
     globalThis.__dirname = path.dirname(__filename);
-  }
-});
-
-// src/logger.ts
-var env, debugMode, debugTags, debugLevel, levels, colorize, Logger;
-var init_logger = __esm({
-  "src/logger.ts"() {
-    init_esm_shim();
-    env = process.env;
-    debugMode = env.DEBUG;
-    debugTags = debugMode && env.DEBUG !== "true" ? env.DEBUG.split(",") : false;
-    debugLevel = env.DEBUG_LEVEL || "warn";
-    levels = ["log", "error", "warn", "info", "debug"];
-    colorize = (message) => ({
-      bold: `\x1B[1m${message}\x1B[0m`,
-      red: `\x1B[31m${message}\x1B[0m`,
-      green: `\x1B[32m${message}\x1B[0m`,
-      yellow: `\x1B[33m${message}\x1B[0m`,
-      blue: `\x1B[34m${message}\x1B[0m`,
-      magenta: `\x1B[35m${message}\x1B[0m`,
-      cyan: `\x1B[36m${message}\x1B[0m`,
-      white: `\x1B[37m${message}\x1B[0m`,
-      gray: `\x1B[90m${message}\x1B[0m`,
-      grey: `\x1B[90m${message}\x1B[0m`,
-      brightRed: `\x1B[91m${message}\x1B[0m`,
-      brightGreen: `\x1B[92m${message}\x1B[0m`,
-      brightYellow: `\x1B[93m${message}\x1B[0m`,
-      brightBlue: `\x1B[94m${message}\x1B[0m`,
-      brightMagenta: `\x1B[95m${message}\x1B[0m`,
-      brightCyan: `\x1B[96m${message}\x1B[0m`,
-      brightWhite: `\x1B[97m${message}\x1B[0m`,
-      bgRed: `\x1B[41m${message}\x1B[0m`,
-      bgGreen: `\x1B[42m${message}\x1B[0m`,
-      bgYellow: `\x1B[43m${message}\x1B[0m`,
-      bgBlue: `\x1B[44m${message}\x1B[0m`,
-      bgMagenta: `\x1B[45m${message}\x1B[0m`,
-      bgCyan: `\x1B[46m${message}\x1B[0m`,
-      bgWhite: `\x1B[47m${message}\x1B[0m`,
-      bgGray: `\x1B[100m${message}\x1B[0m`,
-      bgGrey: `\x1B[100m${message}\x1B[0m`,
-      bgBrightRed: `\x1B[101m${message}\x1B[0m`,
-      bgBrightGreen: `\x1B[102m${message}\x1B[0m`,
-      bgBrightYellow: `\x1B[103m${message}\x1B[0m`,
-      bgBrightBlue: `\x1B[104m${message}\x1B[0m`,
-      bgBrightMagenta: `\x1B[105m${message}\x1B[0m`,
-      bgBrightCyan: `\x1B[106m${message}\x1B[0m`,
-      bgBrightWhite: `\x1B[107m${message}\x1B[0m`,
-      bgBlack: `\x1B[40m${message}\x1B[0m`,
-      bgBrightBlack: `\x1B[100m${message}\x1B[0m`,
-      bgBrightGray: `\x1B[100m${message}\x1B[0m`,
-      bgBrightGrey: `\x1B[100m${message}\x1B[0m`
-    });
-    Logger = class _Logger {
-      static debugMode = debugMode;
-      static debugTags = debugTags;
-      static debugLevel = debugLevel;
-      static debugLevelInt = levels.indexOf(debugLevel);
-      static levels = levels;
-      static colorize = colorize;
-      static log = (message, {
-        label,
-        level = "log",
-        tags = [],
-        method = "log"
-      } = {}) => {
-        if (_Logger.debugLevelInt > levels.indexOf(level)) return;
-        if (!_Logger.testTags(tags)) return;
-        if (label) console.group(`${colorize(label).magenta}`);
-        console[method](message);
-        if (label) console.groupEnd();
-      };
-      static testTags = (tags) => {
-        if (!debugTags) return true;
-        return tags.some((tag) => debugTags.includes(tag));
-      };
-      static error = (message, {
-        label,
-        level = "error",
-        tags = []
-      } = {}) => {
-        _Logger.log(message, { label, level, tags, method: "error" });
-      };
-      static warn = (message, {
-        label,
-        level = "warn",
-        tags = []
-      } = {}) => {
-        _Logger.log(message, { label, level, tags, method: "warn" });
-      };
-      static info = (message, {
-        label,
-        level = "info",
-        tags = []
-      } = {}) => {
-        _Logger.log(message, { label, level, tags, method: "info" });
-      };
-      static debug = (message, {
-        label,
-        level = "debug",
-        tags = []
-      } = {}) => {
-        _Logger.log(message, { label, level, tags, method: "debug" });
-      };
-      static success = (message) => {
-        console.log(`\x1B[32m${message}\x1B[0m`);
-      };
-      static fail = (message) => {
-        console.log(`\x1B[31m${message}\x1B[0m`);
-      };
-      static table = (data, {
-        label,
-        level = "log",
-        tags = []
-      } = {}) => {
-        _Logger.log(data, { label, level, tags, method: "table" });
-      };
-    };
   }
 });
 
@@ -476,11 +359,11 @@ var init_tasks = __esm({
 
 // src/task.ts
 import { Listr, PRESET_TIMER } from "listr2";
+import { Trace } from "@panda/trace";
 var Task2;
 var init_task = __esm({
   "src/task.ts"() {
     init_esm_shim();
-    init_logger();
     Task2 = class _Task {
       static type = "task";
       static config;
@@ -512,7 +395,10 @@ var init_task = __esm({
       $config;
       $derivedConfig;
       $instanceConfig;
-      Logger = Logger;
+      // Per panda-opencode/DECISIONS.md: previously a hand-rolled internal
+      // Logger class duplicating @panda/trace's entire shape. Deprecated in
+      // favor of depending on @panda/trace directly.
+      Trace = Trace;
       constructor(cfg = {}) {
         const lineage = this.getLineage().reverse();
         lineage.forEach((task) => {
@@ -664,7 +550,6 @@ var init_task = __esm({
 
 // src/index.ts
 init_esm_shim();
-init_logger();
 init_task();
 
 // src/task.types.ts
@@ -676,7 +561,6 @@ export {
   FileCreateTask,
   JsonCreateTask,
   JsonUpdateTask,
-  Logger,
   NpmInstallTask,
   PathContextTask,
   PathEnsureTask,

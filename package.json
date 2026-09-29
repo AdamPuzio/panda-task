@@ -1,6 +1,6 @@
 {
   "name": "@panda/task",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Panda Task library",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -33,7 +33,8 @@
   },
   "keywords": [],
   "dependencies": {
-    "@panda/factory": "file:../@panda/factory",
+    "@panda/factory": "*",
+    "@panda/trace": "*",
     "listr2": "^8.2.1"
   },
   "devDependencies": {

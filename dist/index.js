@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; } function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; } var _class; var _class2; var _class3; var _class4; var _class5; var _class6; var _class7; var _class8; var _class9;var __defProp = Object.defineProperty;
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; } function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; } var _class; var _class2; var _class3; var _class4; var _class5; var _class6; var _class7; var _class8;var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
@@ -19,126 +19,9 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/tsup/assets/cjs_shims.js
+// ../../node_modules/tsup/assets/cjs_shims.js
 var init_cjs_shims = __esm({
-  "node_modules/tsup/assets/cjs_shims.js"() {
-  }
-});
-
-// src/logger.ts
-var env, debugMode, debugTags, debugLevel, levels, colorize, Logger;
-var init_logger = __esm({
-  "src/logger.ts"() {
-    init_cjs_shims();
-    env = process.env;
-    debugMode = env.DEBUG;
-    debugTags = debugMode && env.DEBUG !== "true" ? env.DEBUG.split(",") : false;
-    debugLevel = env.DEBUG_LEVEL || "warn";
-    levels = ["log", "error", "warn", "info", "debug"];
-    colorize = (message) => ({
-      bold: `\x1B[1m${message}\x1B[0m`,
-      red: `\x1B[31m${message}\x1B[0m`,
-      green: `\x1B[32m${message}\x1B[0m`,
-      yellow: `\x1B[33m${message}\x1B[0m`,
-      blue: `\x1B[34m${message}\x1B[0m`,
-      magenta: `\x1B[35m${message}\x1B[0m`,
-      cyan: `\x1B[36m${message}\x1B[0m`,
-      white: `\x1B[37m${message}\x1B[0m`,
-      gray: `\x1B[90m${message}\x1B[0m`,
-      grey: `\x1B[90m${message}\x1B[0m`,
-      brightRed: `\x1B[91m${message}\x1B[0m`,
-      brightGreen: `\x1B[92m${message}\x1B[0m`,
-      brightYellow: `\x1B[93m${message}\x1B[0m`,
-      brightBlue: `\x1B[94m${message}\x1B[0m`,
-      brightMagenta: `\x1B[95m${message}\x1B[0m`,
-      brightCyan: `\x1B[96m${message}\x1B[0m`,
-      brightWhite: `\x1B[97m${message}\x1B[0m`,
-      bgRed: `\x1B[41m${message}\x1B[0m`,
-      bgGreen: `\x1B[42m${message}\x1B[0m`,
-      bgYellow: `\x1B[43m${message}\x1B[0m`,
-      bgBlue: `\x1B[44m${message}\x1B[0m`,
-      bgMagenta: `\x1B[45m${message}\x1B[0m`,
-      bgCyan: `\x1B[46m${message}\x1B[0m`,
-      bgWhite: `\x1B[47m${message}\x1B[0m`,
-      bgGray: `\x1B[100m${message}\x1B[0m`,
-      bgGrey: `\x1B[100m${message}\x1B[0m`,
-      bgBrightRed: `\x1B[101m${message}\x1B[0m`,
-      bgBrightGreen: `\x1B[102m${message}\x1B[0m`,
-      bgBrightYellow: `\x1B[103m${message}\x1B[0m`,
-      bgBrightBlue: `\x1B[104m${message}\x1B[0m`,
-      bgBrightMagenta: `\x1B[105m${message}\x1B[0m`,
-      bgBrightCyan: `\x1B[106m${message}\x1B[0m`,
-      bgBrightWhite: `\x1B[107m${message}\x1B[0m`,
-      bgBlack: `\x1B[40m${message}\x1B[0m`,
-      bgBrightBlack: `\x1B[100m${message}\x1B[0m`,
-      bgBrightGray: `\x1B[100m${message}\x1B[0m`,
-      bgBrightGrey: `\x1B[100m${message}\x1B[0m`
-    });
-    Logger = exports.Logger = (_class = class _Logger {
-      static __initStatic() {this.debugMode = debugMode}
-      static __initStatic2() {this.debugTags = debugTags}
-      static __initStatic3() {this.debugLevel = debugLevel}
-      static __initStatic4() {this.debugLevelInt = levels.indexOf(debugLevel)}
-      static __initStatic5() {this.levels = levels}
-      static __initStatic6() {this.colorize = colorize}
-      static __initStatic7() {this.log = (message, {
-        label,
-        level = "log",
-        tags = [],
-        method = "log"
-      } = {}) => {
-        if (_Logger.debugLevelInt > levels.indexOf(level)) return;
-        if (!_Logger.testTags(tags)) return;
-        if (label) console.group(`${colorize(label).magenta}`);
-        console[method](message);
-        if (label) console.groupEnd();
-      }}
-      static __initStatic8() {this.testTags = (tags) => {
-        if (!debugTags) return true;
-        return tags.some((tag) => debugTags.includes(tag));
-      }}
-      static __initStatic9() {this.error = (message, {
-        label,
-        level = "error",
-        tags = []
-      } = {}) => {
-        _Logger.log(message, { label, level, tags, method: "error" });
-      }}
-      static __initStatic10() {this.warn = (message, {
-        label,
-        level = "warn",
-        tags = []
-      } = {}) => {
-        _Logger.log(message, { label, level, tags, method: "warn" });
-      }}
-      static __initStatic11() {this.info = (message, {
-        label,
-        level = "info",
-        tags = []
-      } = {}) => {
-        _Logger.log(message, { label, level, tags, method: "info" });
-      }}
-      static __initStatic12() {this.debug = (message, {
-        label,
-        level = "debug",
-        tags = []
-      } = {}) => {
-        _Logger.log(message, { label, level, tags, method: "debug" });
-      }}
-      static __initStatic13() {this.success = (message) => {
-        console.log(`\x1B[32m${message}\x1B[0m`);
-      }}
-      static __initStatic14() {this.fail = (message) => {
-        console.log(`\x1B[31m${message}\x1B[0m`);
-      }}
-      static __initStatic15() {this.table = (data, {
-        label,
-        level = "log",
-        tags = []
-      } = {}) => {
-        _Logger.log(data, { label, level, tags, method: "table" });
-      }}
-    }, _class.__initStatic(), _class.__initStatic2(), _class.__initStatic3(), _class.__initStatic4(), _class.__initStatic5(), _class.__initStatic6(), _class.__initStatic7(), _class.__initStatic8(), _class.__initStatic9(), _class.__initStatic10(), _class.__initStatic11(), _class.__initStatic12(), _class.__initStatic13(), _class.__initStatic14(), _class.__initStatic15(), _class);
+  "../../node_modules/tsup/assets/cjs_shims.js"() {
   }
 });
 
@@ -149,9 +32,9 @@ var FileCreateTask;
 var init_create = __esm({
   "src/tasks/file/create.ts"() {
     init_cjs_shims();
-    FileCreateTask = exports.FileCreateTask = (_class2 = class extends _task.Task {
-      static __initStatic16() {this.type = "file:create"}
-      static __initStatic17() {this.description = ""}
+    FileCreateTask = exports.FileCreateTask = (_class = class extends _task.Task {
+      static __initStatic() {this.type = "file:create"}
+      static __initStatic2() {this.description = ""}
       // static config = async (config: FileCreateTaskConfig): Promise<FileCreateTaskConfig> => ({
       //   file: path.resolve(config.file),
       //   contents: config.contents,
@@ -175,7 +58,7 @@ var init_create = __esm({
         }
         await _factory.Factory.writeFile(file, contents, { ifExists, encoding });
       }
-    }, _class2.__initStatic16(), _class2.__initStatic17(), _class2);
+    }, _class.__initStatic(), _class.__initStatic2(), _class);
   }
 });
 
@@ -195,9 +78,9 @@ var init_create2 = __esm({
   "src/tasks/json/create.ts"() {
     init_cjs_shims();
     init_task();
-    JsonCreateTask = exports.JsonCreateTask = (_class3 = class extends Task2 {
-      static __initStatic18() {this.type = "json:create"}
-      static __initStatic19() {this.description = "Create a JSON file"}
+    JsonCreateTask = exports.JsonCreateTask = (_class2 = class extends Task2 {
+      static __initStatic3() {this.type = "json:create"}
+      static __initStatic4() {this.description = "Create a JSON file"}
       async run({
         file,
         data = {},
@@ -219,7 +102,7 @@ var init_create2 = __esm({
         output = _factory.Factory.render(output, vals || {});
         await _factory.Factory.writeFile(file, output, { ifExists });
       }
-    }, _class3.__initStatic18(), _class3.__initStatic19(), _class3);
+    }, _class2.__initStatic3(), _class2.__initStatic4(), _class2);
   }
 });
 
@@ -231,9 +114,9 @@ var init_update = __esm({
   "src/tasks/json/update.ts"() {
     init_cjs_shims();
     init_task();
-    JsonUpdateTask = exports.JsonUpdateTask = (_class4 = class extends Task2 {
-      static __initStatic20() {this.type = "json:update"}
-      static __initStatic21() {this.description = "Update a JSON file"}
+    JsonUpdateTask = exports.JsonUpdateTask = (_class3 = class extends Task2 {
+      static __initStatic5() {this.type = "json:update"}
+      static __initStatic6() {this.description = "Update a JSON file"}
       async run({
         target,
         data = {},
@@ -257,7 +140,7 @@ var init_update = __esm({
         let output = JSON.stringify(updated, null, spaces);
         await _factory.Factory.writeFile(target, output, { ifExists: "overwrite" });
       }
-    }, _class4.__initStatic20(), _class4.__initStatic21(), _class4);
+    }, _class3.__initStatic5(), _class3.__initStatic6(), _class3);
   }
 });
 
@@ -277,9 +160,9 @@ var NpmInstallTask;
 var init_install = __esm({
   "src/tasks/npm/install.ts"() {
     init_cjs_shims();
-    NpmInstallTask = exports.NpmInstallTask = (_class5 = class extends _task.Task {
-      static __initStatic22() {this.type = "npm:install"}
-      static __initStatic23() {this.description = "Install NPM packages"}
+    NpmInstallTask = exports.NpmInstallTask = (_class4 = class extends _task.Task {
+      static __initStatic7() {this.type = "npm:install"}
+      static __initStatic8() {this.description = "Install NPM packages"}
       // static config = async (config: NpmInstallTaskConfig): Promise<NpmInstallTaskConfig> => ({
       //   packages,
       //   params = [],
@@ -302,7 +185,7 @@ var init_install = __esm({
         const cmd = `${cd}${packageManagerCli} ${packages.join(" ")} ${params.join(" ")}`;
         await _factory.Factory.runCommand(cmd);
       }
-    }, _class5.__initStatic22(), _class5.__initStatic23(), _class5);
+    }, _class4.__initStatic7(), _class4.__initStatic8(), _class4);
   }
 });
 
@@ -322,9 +205,9 @@ var PathContextTask;
 var init_context = __esm({
   "src/tasks/path/context.ts"() {
     init_cjs_shims();
-    PathContextTask = exports.PathContextTask = (_class6 = class extends _task.Task {
-      static __initStatic24() {this.type = "path:context"}
-      static __initStatic25() {this.description = "Check context of a path"}
+    PathContextTask = exports.PathContextTask = (_class5 = class extends _task.Task {
+      static __initStatic9() {this.type = "path:context"}
+      static __initStatic10() {this.description = "Check context of a path"}
       async run({
         path: path4,
         context
@@ -380,7 +263,7 @@ var init_context = __esm({
         const json = await _factory.Factory.readJsonFile(packageJson);
         return json;
       }
-    }, _class6.__initStatic24(), _class6.__initStatic25(), _class6);
+    }, _class5.__initStatic9(), _class5.__initStatic10(), _class5);
   }
 });
 
@@ -391,16 +274,16 @@ var PathEnsureTask;
 var init_ensure = __esm({
   "src/tasks/path/ensure.ts"() {
     init_cjs_shims();
-    PathEnsureTask = exports.PathEnsureTask = (_class7 = class extends _task.Task {
-      static __initStatic26() {this.type = "path:ensure"}
-      static __initStatic27() {this.description = "Ensure path exists"}
+    PathEnsureTask = exports.PathEnsureTask = (_class6 = class extends _task.Task {
+      static __initStatic11() {this.type = "path:ensure"}
+      static __initStatic12() {this.description = "Ensure path exists"}
       async run({
         path: path4
       }) {
         if (!path4) throw new Error("No target provided to check");
         _factory.Factory.ensurePath(path4);
       }
-    }, _class7.__initStatic26(), _class7.__initStatic27(), _class7);
+    }, _class6.__initStatic11(), _class6.__initStatic12(), _class6);
   }
 });
 
@@ -411,9 +294,9 @@ var PathExistsTask;
 var init_exists = __esm({
   "src/tasks/path/exists.ts"() {
     init_cjs_shims();
-    PathExistsTask = exports.PathExistsTask = (_class8 = class extends _task.Task {
-      static __initStatic28() {this.type = "path:exists"}
-      static __initStatic29() {this.description = "Check if path exists"}
+    PathExistsTask = exports.PathExistsTask = (_class7 = class extends _task.Task {
+      static __initStatic13() {this.type = "path:exists"}
+      static __initStatic14() {this.description = "Check if path exists"}
       async run({
         path: path4,
         ifExists = "success",
@@ -433,7 +316,7 @@ var init_exists = __esm({
           return;
         }
       }
-    }, _class8.__initStatic28(), _class8.__initStatic29(), _class8);
+    }, _class7.__initStatic13(), _class7.__initStatic14(), _class7);
   }
 });
 
@@ -470,13 +353,13 @@ var init_tasks = __esm({
 
 // src/task.ts
 var _listr2 = require('listr2');
+var _trace = require('@panda/trace');
 var Task2;
 var init_task = __esm({
   "src/task.ts"() {
     init_cjs_shims();
-    init_logger();
-    Task2 = exports.Task = (_class9 = class _Task {
-      static __initStatic30() {this.type = "task"}
+    Task2 = exports.Task = (_class8 = class _Task {
+      static __initStatic15() {this.type = "task"}
       
       
       
@@ -506,8 +389,11 @@ var init_task = __esm({
       
       
       
-      __init7() {this.Logger = exports.Logger = Logger}
-      constructor(cfg = {}) {;_class9.prototype.__init2.call(this);_class9.prototype.__init3.call(this);_class9.prototype.__init4.call(this);_class9.prototype.__init5.call(this);_class9.prototype.__init6.call(this);_class9.prototype.__init7.call(this);_class9.prototype.__init8.call(this);_class9.prototype.__init9.call(this);
+      // Per panda-opencode/DECISIONS.md: previously a hand-rolled internal
+      // Logger class duplicating @panda/trace's entire shape. Deprecated in
+      // favor of depending on @panda/trace directly.
+      __init7() {this.Trace = _trace.Trace}
+      constructor(cfg = {}) {;_class8.prototype.__init2.call(this);_class8.prototype.__init3.call(this);_class8.prototype.__init4.call(this);_class8.prototype.__init5.call(this);_class8.prototype.__init6.call(this);_class8.prototype.__init7.call(this);_class8.prototype.__init8.call(this);_class8.prototype.__init9.call(this);
         const lineage = this.getLineage().reverse();
         lineage.forEach((task) => {
           if (task.options) this.parseOptions(task.options);
@@ -652,13 +538,12 @@ var init_task = __esm({
       //   console.log(msg)
       //   if (label) console.groupEnd()
       // }
-    }, _class9.__initStatic30(), _class9);
+    }, _class8.__initStatic15(), _class8);
   }
 });
 
 // src/index.ts
 init_cjs_shims();
-init_logger();
 init_task();
 
 // src/task.types.ts
@@ -675,5 +560,4 @@ init_tasks();
 
 
 
-
-exports.FileCreateTask = FileCreateTask; exports.JsonCreateTask = JsonCreateTask; exports.JsonUpdateTask = JsonUpdateTask; exports.Logger = Logger; exports.NpmInstallTask = NpmInstallTask; exports.PathContextTask = PathContextTask; exports.PathEnsureTask = PathEnsureTask; exports.PathExistsTask = PathExistsTask; exports.Task = Task2;
+exports.FileCreateTask = FileCreateTask; exports.JsonCreateTask = JsonCreateTask; exports.JsonUpdateTask = JsonUpdateTask; exports.NpmInstallTask = NpmInstallTask; exports.PathContextTask = PathContextTask; exports.PathEnsureTask = PathEnsureTask; exports.PathExistsTask = PathExistsTask; exports.Task = Task2;
